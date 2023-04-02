@@ -5,7 +5,7 @@ __all__ = ("Opcode",)
 
 class Opcode:
     """
-    Operation code consisting of the information of a certain operation.
+    Operation code consisting of the information of the operation.
     """
 
     __slots__ = ("inst",)
@@ -30,7 +30,7 @@ class Opcode:
     @property
     def type(self) -> int:
         """
-        (first nibble) the type of operation.
+        The type of operation. (first nibble)
         """
         value = self.inst & 0xF000
         return value
@@ -38,7 +38,7 @@ class Opcode:
     @property
     def x(self) -> int:
         """
-        (second nibble) general purpose register lookup.
+        General Purpose Register lookup. (second nibble)
         """
         value = (self.inst & 0x0F00) >> 8
         return value
@@ -46,7 +46,7 @@ class Opcode:
     @property
     def y(self) -> int:
         """
-        (third nibble) general purpose register lookup.
+        general purpose register lookup. (third nibble)
         """
         value = (self.inst & 0x00F0) >> 4
         return value
@@ -54,7 +54,7 @@ class Opcode:
     @property
     def n(self) -> int:
         """
-        (fourth nibble) 4-bit numeric value.
+        4-bit numeric value. (fourth nibble)
         """
         value = self.inst & 0x000F
         return value
@@ -62,7 +62,7 @@ class Opcode:
     @property
     def kk(self) -> int:
         """
-        (third and fourth nibble) 8-bit immediate.
+        8-bit immediate. (third and fourth nibble)
         """
         value = self.inst & 0x00FF
         return value
@@ -70,7 +70,7 @@ class Opcode:
     @property
     def nnn(self) -> int:
         """
-        (second, third and fourth nibble) 12-bit immediate memory address.
+        12-bit immediate memory address. (second, third and fourth nibble)
         """
         value = self.inst & 0x0FFF
         return value

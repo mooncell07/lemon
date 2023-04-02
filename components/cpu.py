@@ -46,16 +46,16 @@ class CPU:
 
         Attributes:
             sound (pygame.mixer.Sound): A [pygame.mixer.Sound](https://www.pygame.org/docs/ref/mixer.html#pygame.mixer.Sound) object.
-            op (Opcode): Opcode for identifying operations.
+            op (Opcode): Opcode for identifying operation.
 
-            V (int): 16 General Purpose 8-bit registers.
+            V (List[int]): 16 General Purpose 8-bit registers.
             I (int): 16-bit Index register to store memory locations.
             DT (int): 8-bit Delay Timer.
             ST (int): 8-bit Sound Timer.
             PC (int): 16-bit register to store the currently executing address.
-            stack (List[int]): an array of 16 16-bit values to nest subroutines.
+            stack (List[int]): Array of 16 16-bit values for nesting subroutines.
 
-            halt bool: Flag to check if the CPU is halted.
+            halt (bool): Flag to check if the CPU is halted.
         """
         # devices
         self.display = display
@@ -273,14 +273,16 @@ class CPU:
 
         for i in range(self.op.n):
             sprite = self.memory.space[self.I + i]
-            for j in range(8):
-                px = (sprite >> (7 - j)) & 1
-                index = self.display.wrap(x + j, y + i)
+            if (y + i) <= ROWS:
+                for j in range(8):
+                    if (x + j) <= COLUMNS:
+                        px = (sprite >> (7 - j)) & 1
+                        index = self.display.wrap(x + j, y + i)
 
-                if px == 1 and self.display.buffer[index] == 1:
-                    self.V[0xF] = 1
+                        if px == 1 and self.display.buffer[index] == 1:
+                            self.V[0xF] = 1
 
-                self.display.buffer[index] ^= px
+                        self.display.buffer[index] ^= px
 
     def Jp_addr_E(self) -> None:
         """
@@ -330,20 +332,17 @@ class CPU:
         """
         $Fx0A - Wait for a key press, store the value of the key in Vx.
         """
-        self.halt = True
-
-        while self.halt:
-            event = pygame.event.wait()
-            if event.type == pygame.KEYDOWN:
-                if event.key in self.keypad.keymap:
-                    key = self.keypad.keymap[event.key]
-                    self.keypad.set(key)
-                    self.V[self.op.x] = key
-
-                    self.halt = False
+        event = pygame.event.wait()
+        if event.type == pygame.KEYUP:
+            if event.key in self.keypad.keymap:
+                key = self.keypad.keymap[event.key]
+                self.V[self.op.x] = key
+                self.keypad.unset(key)
 
             if event.type == pygame.QUIT:
-                self.display.delete()
+                self.display.destroy()
+        else:
+            self.PC -= 2
 
     def LD_DT_Vx(self) -> None:
         """
@@ -396,10 +395,10 @@ class CPU:
     @property
     def optable(self) -> t.Mapping[int, t.Callable[..., None]]:
         """
-        Property for opcode function lookup.
+        Opcode function lookup table.
 
         Returns:
-            dict: Mapping of opcode type:opcode function
+            dict: opcode.type:subroutine mapping.
         """
         return {
             0x0: self.SYS_addr,
@@ -422,13 +421,14 @@ class CPU:
 
     def beep(self) -> None:
         """
-        Function to make a beep sound.
+        Make a beep sound.
         """
         self.sound.play()
 
-    def step(self) -> None:
+    def cycle(self) -> None:
         """
-        The main CPU method which fetches the opcodes, decodes them and execute.
+        Fetch, Decode and Execute instructions from the memory.
+        Also, decrease timers.
         """
         fetch = (self.memory.space[self.PC] << 8) | self.memory.space[self.PC + 1]
         self.op = Opcode(fetch)
@@ -438,13 +438,13 @@ class CPU:
             self.optable[(self.op.type & 0xF000) >> 12]()
         except KeyError:
             logging.error(f"{CROSS} Opcode not found: {hex(self.op.type)}")
-            self.display.delete()
+            self.display.destroy()
 
         self.handle_timers()
 
     def handle_timers(self) -> None:
         """
-        Function to decrement ST and DT.
+        Decrement ST and DT.
         """
         if self.DT > 0:
             self.DT -= 1

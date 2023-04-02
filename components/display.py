@@ -27,7 +27,7 @@ class Display:
             multiplier: Constant for scaling the window.
 
         Attributes:
-            buffer (bytearray): Display Buffer, used to store sprite location on the window.
+            buffer (bytearray): Display Buffer; used to store sprite location on the window.
         """
         self.screen = screen
         self.multiplier = multiplier
@@ -36,7 +36,7 @@ class Display:
     @classmethod
     def create(cls, multiplier: int) -> t.Self:
         """
-        Classmethod which creates the window and sets caption and icon.
+        Create the window and sets caption and icon.
 
         Args:
             multiplier: Constant for scaling the window.
@@ -49,17 +49,16 @@ class Display:
 
         return self
 
-    def update(self) -> None:
+    def refresh(self) -> None:
         """
-        A method to update the display using
+        Refresh the display using
         [pygame.display.flip](https://www.pygame.org/docs/ref/display.html?highlight=pygame%20display%20flip#pygame.display.flip)
         """
         pygame.display.flip()
 
-    def delete(self) -> None:
+    def destroy(self) -> None:
         """
-        A method to exit the emulator.
-
+        Destroy the window and exit the emulator.
         """
         pygame.quit()
         raise SystemExit
@@ -96,7 +95,13 @@ class Display:
                     COLORS["ON"],
                     pygame.Rect(x, y, self.multiplier, self.multiplier),
                 )
-        self.update()
+        self.refresh()
+
+    def capture(self) -> None:
+        """
+        Screen capturing util. (Saves the output at ./out.png)
+        """
+        pygame.image.save(self.screen, "./out.png")
 
     def clear(self) -> None:
         """

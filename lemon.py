@@ -1,5 +1,6 @@
 import argparse
 import logging
+
 import pygame
 
 from components import CPU, INIT_LOC_CONSTANT, TICK, Display, Keypad, Memory
@@ -19,9 +20,9 @@ class Lemon:
     the internal devices.
     """
 
-    __slots__ = ("cpu", "display", "keypad", "memory")
+    __slots__ = ("cpu", "display", "keypad", "memory", "step")
 
-    def __init__(self, rom: str, mul: int) -> None:
+    def __init__(self, rom: str, mul: int, step: bool) -> None:
         """
         Lemon Constructor.
         The constructor is responsible for loading font and rom, and also initializing other
@@ -30,6 +31,7 @@ class Lemon:
         Args:
             rom: Path to the ROM file.
             mul: The screen size multiplier.
+            step: Switch to single stepping mode.
 
         Attributes:
             memory (Memory): Primary Memory of size 4096 bytes.
@@ -45,6 +47,7 @@ class Lemon:
         self.cpu: CPU = CPU(
             display=self.display, memory=self.memory, keypad=self.keypad
         )
+        self.step: bool = step
 
     def load_font(self) -> None:
         """
@@ -55,42 +58,54 @@ class Lemon:
 
     def load_rom(self, rom: str) -> None:
         """
-        Load ROM from the file path specified in memory from location `0x200` (512)
+        Load ROM in memory from location `0x200` (512)
+
+        Args:
+            rom: Path to the ROM file.
         """
         self.memory.load_binary(rom, offset=INIT_LOC_CONSTANT)
         logging.info(
             f"{TICK} Successfully loaded ROM at location {hex(INIT_LOC_CONSTANT)}"
         )
 
-    def tick(self) -> None:
+    def tick(self, external: bool) -> None:
         """
         Method representing a single tick from the emulator.
+
+        Args:
+            external: Whether a foreign process is asking for screen captures.
         """
-        if not self.cpu.halt:
-            self.cpu.step()
+        if self.step:
+            event = pygame.event.wait()
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_PAGEUP:
+                self.cpu.cycle()
+                if external:
+                    self.display.capture()
+        else:
+            if not self.cpu.halt:
+                self.cpu.cycle()
 
         self.display.render()
 
     def run(self) -> None:
         """
-        Main runner for the emulator, it takes care of taking user input,
-        ticking the internal hardwares and clean-up at shutdown.
+        Step through the emulation indefinitely.
         """
-        cycle = True
-        while cycle:
-            self.tick()
+        is_running = True
+        while is_running:
+            self.tick(external=False)
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    cycle = False
+                    is_running = False
                 if event.type == pygame.KEYDOWN:
-                    if event.key in self.keypad.keymap:
-                        self.keypad.set(self.keypad.keymap[event.key])
+                    self.keypad.handle(event, self.display.capture)
+
                 if event.type == pygame.KEYUP:
                     if event.key in self.keypad.keymap:
                         self.keypad.unset(self.keypad.keymap[event.key])
 
-        self.display.delete()
+        self.display.destroy()
 
 
 if __name__ == "__main__":
@@ -99,9 +114,12 @@ if __name__ == "__main__":
     )
     parser.add_argument("rom", help="Path to the rom file.")
     parser.add_argument(
-        "--scale", help="Scale up\down the display window.", type=int, default=10
+        "-S", "--scale", help="Scale up\down the display window.", type=int, default=10
+    )
+    parser.add_argument(
+        "-SSM", "--step", help="Switch to single stepping mode.", action="store_true"
     )
     args = parser.parse_args()
 
-    lemon = Lemon(args.rom, args.scale)
+    lemon = Lemon(args.rom, args.scale, args.step)
     lemon.run()
