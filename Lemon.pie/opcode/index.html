@@ -580,7 +580,7 @@
   <div class="doc doc-contents first">
 
   
-      <p>Operation code consisting of the information of a certain operation.</p>
+      <p>Operation code consisting of the information of the operation.</p>
 
 
         <details class="quote">
@@ -660,7 +660,7 @@
 <span class="normal">78</span>
 <span class="normal">79</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Opcode</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Operation code consisting of the information of a certain operation.</span>
+<span class="sd">    Operation code consisting of the information of the operation.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;inst&quot;</span><span class="p">,)</span>
@@ -685,7 +685,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        (first nibble) the type of operation.</span>
+<span class="sd">        The type of operation. (first nibble)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inst</span> <span class="o">&amp;</span> <span class="mh">0xF000</span>
         <span class="k">return</span> <span class="n">value</span>
@@ -693,7 +693,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        (second nibble) general purpose register lookup.</span>
+<span class="sd">        General Purpose Register lookup. (second nibble)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inst</span> <span class="o">&amp;</span> <span class="mh">0x0F00</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span>
         <span class="k">return</span> <span class="n">value</span>
@@ -701,7 +701,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">y</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        (third nibble) general purpose register lookup.</span>
+<span class="sd">        general purpose register lookup. (third nibble)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inst</span> <span class="o">&amp;</span> <span class="mh">0x00F0</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span>
         <span class="k">return</span> <span class="n">value</span>
@@ -709,7 +709,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">n</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        (fourth nibble) 4-bit numeric value.</span>
+<span class="sd">        4-bit numeric value. (fourth nibble)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inst</span> <span class="o">&amp;</span> <span class="mh">0x000F</span>
         <span class="k">return</span> <span class="n">value</span>
@@ -717,7 +717,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">kk</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        (third and fourth nibble) 8-bit immediate.</span>
+<span class="sd">        8-bit immediate. (third and fourth nibble)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inst</span> <span class="o">&amp;</span> <span class="mh">0x00FF</span>
         <span class="k">return</span> <span class="n">value</span>
@@ -725,7 +725,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">nnn</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        (second, third and fourth nibble) 12-bit immediate memory address.</span>
+<span class="sd">        12-bit immediate memory address. (second, third and fourth nibble)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inst</span> <span class="o">&amp;</span> <span class="mh">0x0FFF</span>
         <span class="k">return</span> <span class="n">value</span>
@@ -761,7 +761,7 @@
 
   <div class="doc doc-contents ">
   
-      <p>(first nibble) the type of operation.</p>
+      <p>The type of operation. (first nibble)</p>
   </div>
 
 </div>
@@ -782,7 +782,7 @@
 
   <div class="doc doc-contents ">
   
-      <p>(second nibble) general purpose register lookup.</p>
+      <p>General Purpose Register lookup. (second nibble)</p>
   </div>
 
 </div>
@@ -803,7 +803,7 @@
 
   <div class="doc doc-contents ">
   
-      <p>(third nibble) general purpose register lookup.</p>
+      <p>general purpose register lookup. (third nibble)</p>
   </div>
 
 </div>
@@ -824,7 +824,7 @@
 
   <div class="doc doc-contents ">
   
-      <p>(fourth nibble) 4-bit numeric value.</p>
+      <p>4-bit numeric value. (fourth nibble)</p>
   </div>
 
 </div>
@@ -845,7 +845,7 @@
 
   <div class="doc doc-contents ">
   
-      <p>(third and fourth nibble) 8-bit immediate.</p>
+      <p>8-bit immediate. (third and fourth nibble)</p>
   </div>
 
 </div>
@@ -866,7 +866,7 @@
 
   <div class="doc doc-contents ">
   
-      <p>(second, third and fourth nibble) 12-bit immediate memory address.</p>
+      <p>12-bit immediate memory address. (second, third and fourth nibble)</p>
   </div>
 
 </div>

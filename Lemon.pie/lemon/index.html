@@ -559,94 +559,108 @@ the internal devices.</p>
 
         <details class="quote">
           <summary>Source code in <code>lemon\lemon.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span>
-<span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span>
-<span class="normal">77</span>
-<span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span>
-<span class="normal">88</span>
-<span class="normal">89</span>
-<span class="normal">90</span>
-<span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Lemon</span><span class="p">:</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 16</span>
+<span class="normal"> 17</span>
+<span class="normal"> 18</span>
+<span class="normal"> 19</span>
+<span class="normal"> 20</span>
+<span class="normal"> 21</span>
+<span class="normal"> 22</span>
+<span class="normal"> 23</span>
+<span class="normal"> 24</span>
+<span class="normal"> 25</span>
+<span class="normal"> 26</span>
+<span class="normal"> 27</span>
+<span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
+<span class="normal"> 31</span>
+<span class="normal"> 32</span>
+<span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Lemon</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    As the main entry point for lemon emulator,</span>
 <span class="sd">    this class takes care of interfacing with the user and</span>
 <span class="sd">    the internal devices.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="s2">&quot;display&quot;</span><span class="p">,</span> <span class="s2">&quot;keypad&quot;</span><span class="p">,</span> <span class="s2">&quot;memory&quot;</span><span class="p">)</span>
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span> <span class="s2">&quot;display&quot;</span><span class="p">,</span> <span class="s2">&quot;keypad&quot;</span><span class="p">,</span> <span class="s2">&quot;memory&quot;</span><span class="p">,</span> <span class="s2">&quot;step&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rom</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mul</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rom</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mul</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Lemon Constructor.</span>
 <span class="sd">        The constructor is responsible for loading font and rom, and also initializing other</span>
@@ -655,6 +669,7 @@ the internal devices.</p>
 <span class="sd">        Args:</span>
 <span class="sd">            rom: Path to the ROM file.</span>
 <span class="sd">            mul: The screen size multiplier.</span>
+<span class="sd">            step: Switch to single stepping mode.</span>
 
 <span class="sd">        Attributes:</span>
 <span class="sd">            memory (Memory): Primary Memory of size 4096 bytes.</span>
@@ -670,6 +685,7 @@ the internal devices.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">cpu</span><span class="p">:</span> <span class="n">CPU</span> <span class="o">=</span> <span class="n">CPU</span><span class="p">(</span>
             <span class="n">display</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">display</span><span class="p">,</span> <span class="n">memory</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">memory</span><span class="p">,</span> <span class="n">keypad</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">keypad</span>
         <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">step</span>
 
     <span class="k">def</span> <span class="nf">load_font</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -680,42 +696,54 @@ the internal devices.</p>
 
     <span class="k">def</span> <span class="nf">load_rom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rom</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Load ROM from the file path specified in memory from location `0x200` (512)</span>
+<span class="sd">        Load ROM in memory from location `0x200` (512)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            rom: Path to the ROM file.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">memory</span><span class="o">.</span><span class="n">load_binary</span><span class="p">(</span><span class="n">rom</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">INIT_LOC_CONSTANT</span><span class="p">)</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">TICK</span><span class="si">}</span><span class="s2"> Successfully loaded ROM at location </span><span class="si">{</span><span class="nb">hex</span><span class="p">(</span><span class="n">INIT_LOC_CONSTANT</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">tick</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">tick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">external</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Method representing a single tick from the emulator.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            external: Whether a foreign process is asking for screen captures.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">cpu</span><span class="o">.</span><span class="n">halt</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">cpu</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="p">:</span>
+            <span class="n">event</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">KEYDOWN</span> <span class="ow">and</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">K_PAGEUP</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cpu</span><span class="o">.</span><span class="n">cycle</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">external</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">capture</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">cpu</span><span class="o">.</span><span class="n">halt</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cpu</span><span class="o">.</span><span class="n">cycle</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Main runner for the emulator, it takes care of taking user input,</span>
-<span class="sd">        ticking the internal hardwares and clean-up at shutdown.</span>
+<span class="sd">        Step through the emulation indefinitely.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">cycle</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">while</span> <span class="n">cycle</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">tick</span><span class="p">()</span>
+        <span class="n">is_running</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">while</span> <span class="n">is_running</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tick</span><span class="p">(</span><span class="n">external</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
             <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
                 <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">QUIT</span><span class="p">:</span>
-                    <span class="n">cycle</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="n">is_running</span> <span class="o">=</span> <span class="kc">False</span>
                 <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">KEYDOWN</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keypad</span><span class="o">.</span><span class="n">keymap</span><span class="p">:</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">keypad</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keypad</span><span class="o">.</span><span class="n">keymap</span><span class="p">[</span><span class="n">event</span><span class="o">.</span><span class="n">key</span><span class="p">])</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">keypad</span><span class="o">.</span><span class="n">handle</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">capture</span><span class="p">)</span>
+
                 <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">KEYUP</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keypad</span><span class="o">.</span><span class="n">keymap</span><span class="p">:</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">keypad</span><span class="o">.</span><span class="n">unset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keypad</span><span class="o">.</span><span class="n">keymap</span><span class="p">[</span><span class="n">event</span><span class="o">.</span><span class="n">key</span><span class="p">])</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -736,7 +764,7 @@ the internal devices.</p>
 
 
 <h3 id="lemon.Lemon.__init__" class="doc doc-heading">
-<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">rom</span><span class="p">,</span> <span class="n">mul</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">rom</span><span class="p">,</span> <span class="n">mul</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span></code>
 
 <a href="#lemon.Lemon.__init__" class="headerlink" title="Permanent link">+</a></h3>
 
@@ -774,6 +802,16 @@ devices.</p>
                 <code><a class="autorefs autorefs-external" href="https://docs.python.org/3.10/library/functions.html#int">int</a></code>
           </td>
           <td><p>The screen size multiplier.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>step</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3.10/library/functions.html#bool">bool</a></code>
+          </td>
+          <td><p>Switch to single stepping mode.</p></td>
           <td>
               <em>required</em>
           </td>
@@ -824,8 +862,7 @@ devices.</p>
 
       <details class="quote">
         <summary>Source code in <code>lemon\lemon.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">24</span>
-<span class="normal">25</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">25</span>
 <span class="normal">26</span>
 <span class="normal">27</span>
 <span class="normal">28</span>
@@ -847,7 +884,10 @@ devices.</p>
 <span class="normal">44</span>
 <span class="normal">45</span>
 <span class="normal">46</span>
-<span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rom</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mul</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rom</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mul</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Lemon Constructor.</span>
 <span class="sd">    The constructor is responsible for loading font and rom, and also initializing other</span>
@@ -856,6 +896,7 @@ devices.</p>
 <span class="sd">    Args:</span>
 <span class="sd">        rom: Path to the ROM file.</span>
 <span class="sd">        mul: The screen size multiplier.</span>
+<span class="sd">        step: Switch to single stepping mode.</span>
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        memory (Memory): Primary Memory of size 4096 bytes.</span>
@@ -871,6 +912,7 @@ devices.</p>
     <span class="bp">self</span><span class="o">.</span><span class="n">cpu</span><span class="p">:</span> <span class="n">CPU</span> <span class="o">=</span> <span class="n">CPU</span><span class="p">(</span>
         <span class="n">display</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">display</span><span class="p">,</span> <span class="n">memory</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">memory</span><span class="p">,</span> <span class="n">keypad</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">keypad</span>
     <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">step</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
@@ -893,12 +935,12 @@ devices.</p>
 
       <details class="quote">
         <summary>Source code in <code>lemon\lemon.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">52</span>
 <span class="normal">53</span>
-<span class="normal">54</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_font</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_font</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Load Font from the `/bin/FONT` file in memory from location `0x0`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -922,20 +964,50 @@ devices.</p>
 
   <div class="doc doc-contents ">
   
-      <p>Load ROM from the file path specified in memory from location <code>0x200</code> (512)</p>
+      <p>Load ROM in memory from location <code>0x200</code> (512)</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>rom</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3.10/library/stdtypes.html#str">str</a></code>
+          </td>
+          <td><p>Path to the ROM file.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
 
       <details class="quote">
         <summary>Source code in <code>lemon\lemon.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">59</span>
 <span class="normal">60</span>
 <span class="normal">61</span>
 <span class="normal">62</span>
-<span class="normal">63</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_rom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rom</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_rom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rom</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Load ROM from the file path specified in memory from location `0x200` (512)</span>
+<span class="sd">    Load ROM in memory from location `0x200` (512)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        rom: Path to the ROM file.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">memory</span><span class="o">.</span><span class="n">load_binary</span><span class="p">(</span><span class="n">rom</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">INIT_LOC_CONSTANT</span><span class="p">)</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
@@ -952,7 +1024,7 @@ devices.</p>
 
 
 <h3 id="lemon.Lemon.tick" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">tick</span><span class="p">()</span></code>
+<code class="highlight language-python"><span class="n">tick</span><span class="p">(</span><span class="n">external</span><span class="p">)</span></code>
 
 <a href="#lemon.Lemon.tick" class="headerlink" title="Permanent link">+</a></h3>
 
@@ -961,21 +1033,65 @@ devices.</p>
   
       <p>Method representing a single tick from the emulator.</p>
 
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>external</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3.10/library/functions.html#bool">bool</a></code>
+          </td>
+          <td><p>Whether a foreign process is asking for screen captures.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
       <details class="quote">
         <summary>Source code in <code>lemon\lemon.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">tick</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">tick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">external</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Method representing a single tick from the emulator.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        external: Whether a foreign process is asking for screen captures.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">cpu</span><span class="o">.</span><span class="n">halt</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">cpu</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="p">:</span>
+        <span class="n">event</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">KEYDOWN</span> <span class="ow">and</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">K_PAGEUP</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cpu</span><span class="o">.</span><span class="n">cycle</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">external</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">capture</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">cpu</span><span class="o">.</span><span class="n">halt</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cpu</span><span class="o">.</span><span class="n">cycle</span><span class="p">()</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
@@ -996,50 +1112,47 @@ devices.</p>
 
   <div class="doc doc-contents ">
   
-      <p>Main runner for the emulator, it takes care of taking user input,
-ticking the internal hardwares and clean-up at shutdown.</p>
+      <p>Step through the emulation indefinitely.</p>
 
       <details class="quote">
         <summary>Source code in <code>lemon\lemon.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span>
-<span class="normal">77</span>
-<span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span>
-<span class="normal">88</span>
-<span class="normal">89</span>
-<span class="normal">90</span>
-<span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Main runner for the emulator, it takes care of taking user input,</span>
-<span class="sd">    ticking the internal hardwares and clean-up at shutdown.</span>
+<span class="sd">    Step through the emulation indefinitely.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">cycle</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="k">while</span> <span class="n">cycle</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tick</span><span class="p">()</span>
+    <span class="n">is_running</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">while</span> <span class="n">is_running</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tick</span><span class="p">(</span><span class="n">external</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">QUIT</span><span class="p">:</span>
-                <span class="n">cycle</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="n">is_running</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">KEYDOWN</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keypad</span><span class="o">.</span><span class="n">keymap</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">keypad</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keypad</span><span class="o">.</span><span class="n">keymap</span><span class="p">[</span><span class="n">event</span><span class="o">.</span><span class="n">key</span><span class="p">])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">keypad</span><span class="o">.</span><span class="n">handle</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">capture</span><span class="p">)</span>
+
             <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">KEYUP</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keypad</span><span class="o">.</span><span class="n">keymap</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">keypad</span><span class="o">.</span><span class="n">unset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keypad</span><span class="o">.</span><span class="n">keymap</span><span class="p">[</span><span class="n">event</span><span class="o">.</span><span class="n">key</span><span class="p">])</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>

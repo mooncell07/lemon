@@ -350,15 +350,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#components.display.Display.update" class="md-nav__link">
-    update()
+  <a href="#components.display.Display.refresh" class="md-nav__link">
+    refresh()
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#components.display.Display.delete" class="md-nav__link">
-    delete()
+  <a href="#components.display.Display.destroy" class="md-nav__link">
+    destroy()
   </a>
   
 </li>
@@ -373,6 +373,13 @@
           <li class="md-nav__item">
   <a href="#components.display.Display.render" class="md-nav__link">
     render()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#components.display.Display.capture" class="md-nav__link">
+    capture()
   </a>
   
 </li>
@@ -507,15 +514,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#components.display.Display.update" class="md-nav__link">
-    update()
+  <a href="#components.display.Display.refresh" class="md-nav__link">
+    refresh()
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#components.display.Display.delete" class="md-nav__link">
-    delete()
+  <a href="#components.display.Display.destroy" class="md-nav__link">
+    destroy()
   </a>
   
 </li>
@@ -530,6 +537,13 @@
           <li class="md-nav__item">
   <a href="#components.display.Display.render" class="md-nav__link">
     render()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#components.display.Display.capture" class="md-nav__link">
+    capture()
   </a>
   
 </li>
@@ -678,7 +692,12 @@ window.</p>
 <span class="normal">102</span>
 <span class="normal">103</span>
 <span class="normal">104</span>
-<span class="normal">105</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Display</span><span class="p">:</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Display</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Object for handling creation, rendering and deletion of the emulator</span>
 <span class="sd">    window.</span>
@@ -695,7 +714,7 @@ window.</p>
 <span class="sd">            multiplier: Constant for scaling the window.</span>
 
 <span class="sd">        Attributes:</span>
-<span class="sd">            buffer (bytearray): Display Buffer, used to store sprite location on the window.</span>
+<span class="sd">            buffer (bytearray): Display Buffer; used to store sprite location on the window.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">screen</span> <span class="o">=</span> <span class="n">screen</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">multiplier</span> <span class="o">=</span> <span class="n">multiplier</span>
@@ -704,7 +723,7 @@ window.</p>
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">multiplier</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Classmethod which creates the window and sets caption and icon.</span>
+<span class="sd">        Create the window and sets caption and icon.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            multiplier: Constant for scaling the window.</span>
@@ -717,17 +736,16 @@ window.</p>
 
         <span class="k">return</span> <span class="bp">self</span>
 
-    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        A method to update the display using</span>
+<span class="sd">        Refresh the display using</span>
 <span class="sd">        [pygame.display.flip](https://www.pygame.org/docs/ref/display.html?highlight=pygame%20display%20flip#pygame.display.flip)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">destroy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        A method to exit the emulator.</span>
-
+<span class="sd">        Destroy the window and exit the emulator.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">pygame</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
         <span class="k">raise</span> <span class="ne">SystemExit</span>
@@ -764,7 +782,13 @@ window.</p>
                     <span class="n">COLORS</span><span class="p">[</span><span class="s2">&quot;ON&quot;</span><span class="p">],</span>
                     <span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiplier</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiplier</span><span class="p">),</span>
                 <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">capture</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Screen capturing util. (Saves the output at ./out.png)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">screen</span><span class="p">,</span> <span class="s2">&quot;./out.png&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -849,7 +873,7 @@ window.</p>
           <td>
                 <code><a class="autorefs autorefs-external" href="https://docs.python.org/3.10/library/stdtypes.html#bytearray">bytearray</a></code>
           </td>
-          <td><p>Display Buffer, used to store sprite location on the window.</p></td>
+          <td><p>Display Buffer; used to store sprite location on the window.</p></td>
         </tr>
     </tbody>
   </table>
@@ -878,7 +902,7 @@ window.</p>
 <span class="sd">        multiplier: Constant for scaling the window.</span>
 
 <span class="sd">    Attributes:</span>
-<span class="sd">        buffer (bytearray): Display Buffer, used to store sprite location on the window.</span>
+<span class="sd">        buffer (bytearray): Display Buffer; used to store sprite location on the window.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">screen</span> <span class="o">=</span> <span class="n">screen</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">multiplier</span> <span class="o">=</span> <span class="n">multiplier</span>
@@ -905,7 +929,7 @@ window.</p>
 
   <div class="doc doc-contents ">
   
-      <p>Classmethod which creates the window and sets caption and icon.</p>
+      <p>Create the window and sets caption and icon.</p>
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -950,7 +974,7 @@ window.</p>
 <span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
 <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">multiplier</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Classmethod which creates the window and sets caption and icon.</span>
+<span class="sd">    Create the window and sets caption and icon.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        multiplier: Constant for scaling the window.</span>
@@ -972,15 +996,15 @@ window.</p>
 
 
 
-<h3 id="components.display.Display.update" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">update</span><span class="p">()</span></code>
+<h3 id="components.display.Display.refresh" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">refresh</span><span class="p">()</span></code>
 
-<a href="#components.display.Display.update" class="headerlink" title="Permanent link">+</a></h3>
+<a href="#components.display.Display.refresh" class="headerlink" title="Permanent link">+</a></h3>
 
 
   <div class="doc doc-contents ">
   
-      <p>A method to update the display using
+      <p>Refresh the display using
 <a href="https://www.pygame.org/docs/ref/display.html?highlight=pygame%20display%20flip#pygame.display.flip">pygame.display.flip</a></p>
 
       <details class="quote">
@@ -990,9 +1014,9 @@ window.</p>
 <span class="normal">54</span>
 <span class="normal">55</span>
 <span class="normal">56</span>
-<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A method to update the display using</span>
+<span class="sd">    Refresh the display using</span>
 <span class="sd">    [pygame.display.flip](https://www.pygame.org/docs/ref/display.html?highlight=pygame%20display%20flip#pygame.display.flip)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
@@ -1006,15 +1030,15 @@ window.</p>
 
 
 
-<h3 id="components.display.Display.delete" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">delete</span><span class="p">()</span></code>
+<h3 id="components.display.Display.destroy" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">destroy</span><span class="p">()</span></code>
 
-<a href="#components.display.Display.delete" class="headerlink" title="Permanent link">+</a></h3>
+<a href="#components.display.Display.destroy" class="headerlink" title="Permanent link">+</a></h3>
 
 
   <div class="doc doc-contents ">
   
-      <p>A method to exit the emulator.</p>
+      <p>Destroy the window and exit the emulator.</p>
 
       <details class="quote">
         <summary>Source code in <code>components\display.py</code></summary>
@@ -1023,11 +1047,9 @@ window.</p>
 <span class="normal">61</span>
 <span class="normal">62</span>
 <span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">destroy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A method to exit the emulator.</span>
-
+<span class="sd">    Destroy the window and exit the emulator.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">pygame</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
     <span class="k">raise</span> <span class="ne">SystemExit</span>
@@ -1105,7 +1127,8 @@ window.</p>
 
       <details class="quote">
         <summary>Source code in <code>components\display.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">67</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">66</span>
+<span class="normal">67</span>
 <span class="normal">68</span>
 <span class="normal">69</span>
 <span class="normal">70</span>
@@ -1119,8 +1142,7 @@ window.</p>
 <span class="normal">78</span>
 <span class="normal">79</span>
 <span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">wrap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="normal">81</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">wrap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Wrap overflown/underflown pixels back at the opposite end.</span>
 
@@ -1158,7 +1180,8 @@ window.</p>
 
       <details class="quote">
         <summary>Source code in <code>components\display.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">84</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">83</span>
+<span class="normal">84</span>
 <span class="normal">85</span>
 <span class="normal">86</span>
 <span class="normal">87</span>
@@ -1172,8 +1195,7 @@ window.</p>
 <span class="normal">95</span>
 <span class="normal">96</span>
 <span class="normal">97</span>
-<span class="normal">98</span>
-<span class="normal">99</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">98</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Render the ON/OFF pixels onto the screen.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1188,7 +1210,38 @@ window.</p>
                 <span class="n">COLORS</span><span class="p">[</span><span class="s2">&quot;ON&quot;</span><span class="p">],</span>
                 <span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiplier</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiplier</span><span class="p">),</span>
             <span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="components.display.Display.capture" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">capture</span><span class="p">()</span></code>
+
+<a href="#components.display.Display.capture" class="headerlink" title="Permanent link">+</a></h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Screen capturing util. (Saves the output at ./out.png)</p>
+
+      <details class="quote">
+        <summary>Source code in <code>components\display.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">capture</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Screen capturing util. (Saves the output at ./out.png)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">screen</span><span class="p">,</span> <span class="s2">&quot;./out.png&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
@@ -1211,11 +1264,11 @@ window.</p>
 
       <details class="quote">
         <summary>Source code in <code>components\display.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">101</span>
-<span class="normal">102</span>
-<span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Clear the display buffer.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
