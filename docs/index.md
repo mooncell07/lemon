@@ -16,11 +16,11 @@ an attempt to make the codebase a tad bit more clean.
 So far, i have completed almost 90% of the emulator though there are a few things that are still
 needed to be fixed:
 
-- ~~Clipping Quirk~~ *Fixed in 1.1.0*
+- ~Clipping Quirk~ *Fixed in 1.1.0*
 
 - Disp.wait Quirk
 
-- ~~Keypad Not Halting Bug~~ *Fixed in 1.1.0*
+- ~Keypad Not Halting Bug~ *Fixed in 1.1.0*
 
 Since i am going for classic CHIP-8 varient, i have to implement those quriks to match
 original CHIP-8 behaviour.
@@ -49,6 +49,6 @@ eventually emulate other consoles like Gameboy and NES.
 Thanks to...
 
 - [Cowgod's Chip-8 Technical Reference](http://devernay.free.fr/hacks/chip8/C8TECH10.HTM).
-- [Tobias V. Langhoff](https://tobiasvl.github.io/) for the incredble [guide](https://tobiasvl.github.io/blog/write-a-chip-8-emulator/).
+- [Tobias V. Langhoff](https://tobiasvl.github.io/) for the incredible [guide](https://tobiasvl.github.io/blog/write-a-chip-8-emulator/).
 - [Timendus](https://github.com/Timendus) for the amazing [test suite](https://github.com/Timendus/chip8-test-suite).
 - The [r/emu](https://www.reddit.com/r/emulation/) community.
