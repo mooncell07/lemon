@@ -189,12 +189,12 @@ class CPU:
         $8xy4 - Set Vx = Vx + Vy, set VF = carry.
         """
         val = self.V[self.op.x] + self.V[self.op.y]
+        self.V[self.op.x] = val & 0xFF
+
         if val > 0xFF:
             self.V[0xF] = 1
         else:
             self.V[0xF] = 0
-
-        self.V[self.op.x] = val & 0xFF
 
     def SUB_Vx_Vy(self) -> None:
         """
@@ -203,12 +203,12 @@ class CPU:
         x = self.V[self.op.x]
         y = self.V[self.op.y]
 
+        self.V[self.op.x] = (x - y) & 0xFF
+
         if x < y:
             self.V[0xF] = 0
         else:
             self.V[0xF] = 1
-
-        self.V[self.op.x] = (x - y) & 0xFF
 
     def SHR_Vx_Vy(self) -> None:
         """
@@ -233,9 +233,10 @@ class CPU:
         """
         $8xyE - Set Vx = Vx SHL 1.
         """
-        self.V[self.op.x] = self.V[self.op.y]
-        self.V[self.op.x] = (self.V[self.op.x] << 1) & 0xFF
-        self.V[0xF] = self.V[self.op.x] >> 7
+        y = self.V[self.op.y]
+
+        self.V[self.op.x] = (y << 1) & 0xFF
+        self.V[0xF] = (y & 0xFF) >> 7
 
     def SNE_Vx_Vy(self) -> None:
         """
