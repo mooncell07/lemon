@@ -1,14 +1,19 @@
 [tool.poetry]
 name = "lemon"
-version = "1.1.0"
+version = "1.2.0"
 description = "A CHIP-8 emulator written in Python."
-authors = ["hachi79 <80042274+hachi79@users.noreply.github.com>"]
+authors = ["mooncell07 <80042274+mooncell07@users.noreply.github.com>"]
 license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
 pygame = "^2.2.0"
+
+[tool.poetry.group.dev.dependencies]
+mkdocs = "^1.5.2"
+mkdocstrings = {extras = ["python"], version = "^0.22.0"}
+mkdocs-material = "^9.2.3"
 
 [build-system]
 requires = ["poetry-core"]

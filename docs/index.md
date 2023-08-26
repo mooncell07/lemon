@@ -26,18 +26,25 @@ Since i am going for classic CHIP-8 varient, i have to implement those quriks to
 original CHIP-8 behaviour.
 
 ### Test Results:
+(tested with chip8-test-suite's ver 4.0)
+
+**Chip8 Test Suite's logo**:
+![Chip8 test suite logo](./img/1-chip8-logo.png)
+
+**IBM Logo**:
+![ibm logo](./img/2-ibm-logo.png)
 
 **Corax Test**:
-![corax test](./img/test_opcode.png)
+![corax test](./img/3-corax%2B.png)
 
 **Flags Test**:
-![flags test](./img/flags-test.png)
+![flags test](./img/4-flags.png)
 
 **Quirks Test**:
-![quirks test](./img/quirks-test.png)
+![quirks test](./img/5-quirks.png)
 
-**Halt Test**:
-![halt test](./img/halt-test.png)
+**Keypad Halt Test**:
+![halt test](./img/6-keypad.png)
 
 ### Future Ahead:
 

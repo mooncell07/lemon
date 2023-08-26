@@ -28,21 +28,21 @@ plugins:
 - mkdocstrings:
     handlers:
       python:
-        rendering:
-            show_root_heading: true
+        options:
+            how_root_heading: true
             members_order: "source"
         import:
-          - https://docs.python.org/3.10/objects.inv
+            - https://docs.python.org/3.10/objects.inv
 
 nav:
   - Home: index.md
   - Lemon.pie:
-    - Lemon: Lemon.pie\lemon.md
-    - Display: Lemon.pie\display.md
-    - CPU: Lemon.pie\cpu.md
-    - Memory: Lemon.pie\memory.md
-    - Opcode: Lemon.pie\opcode.md
-    - Keypad: Lemon.pie\keypad.md
+    - Lemon: Lemon.pie/lemon.md
+    - Display: Lemon.pie/display.md
+    - CPU: Lemon.pie/cpu.md
+    - Memory: Lemon.pie/memory.md
+    - Opcode: Lemon.pie/opcode.md
+    - Keypad: Lemon.pie/keypad.md
 
 markdown_extensions:
   - pymdownx.highlight
